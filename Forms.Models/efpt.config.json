@@ -1,0 +1,61 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "DynamicFormsContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "Forms.Models",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[ControlType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[DataSourceCtrl]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[DataSources]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[FrmAnswers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[FrmForms]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[FrmQuestions]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "islam.DynamicForms",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false,
+   "UseT4": false
+}

@@ -1,0 +1,91 @@
+﻿@model FrmForms
+
+@*if "enctype="multipart/form-data" " does not exsists it will not work*@
+<form method="post" asp-action="Upsert">
+    <input asp-for="Id" hidden  />
+    <div class="row">
+        <div class="offset-2 col-8">
+            <div class="border p-3 mt-4">
+                <div class="row pb-2">
+                    <h2 class="text-primary">@(Model.Id != 0  ? "Update" : "Create") Form</h2>
+                    <hr />
+                </div>
+                @*<div asp-validation-summary="All" class="text-danger"></div>*@
+                   <div class="row mb-3">
+                    <div class="col-2">
+                        <label asp-for="TitleEn"></label>
+                    </div>
+                    <div class="col-10">
+                        <input asp-for="TitleEn" class="col-9 form-control" />
+                        <span asp-validation-for="TitleEn" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label asp-for="TitleAr"></label>
+                    </div>
+                    <div class="col-10">
+                        <input asp-for="TitleAr"   class="col-9 form-control" />
+                        <span asp-validation-for="TitleAr" class="text-danger"></span>
+                    </div>
+                </div>
+                 <div class="row mb-3">
+                    <div class="col-2">
+                        <label asp-for="DescriptionEn"></label>
+                    </div>
+                    <div class="col-10">
+                        <input asp-for="DescriptionEn" rows="3" class="col-9 form-control" />
+                        <span asp-validation-for="DescriptionEn" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label asp-for="DescriptionAr"></label>
+                    </div>
+                    <div class="col-10">
+                        <input asp-for="DescriptionAr" rows="3" class="col-9 form-control" />
+                        <span asp-validation-for="DescriptionAr" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="offset-3 col-4">
+                        @if (Model.Id != 0)
+                        {
+                            <button type="submit" class="w-100 btn btn-secondary">Submit</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="w-100 btn btn-secondary" asp-route-id="@Model.Id">Create</button>
+                        }
+                    </div>
+                    <div class="col-4">
+                        <a asp-action="Index" asp-controller="Forms" class="btn btn-primary w-100">
+                            <i class="bi bi-arrow-left-circle-fill"></i>&nbsp; Back to List
+                        </a>
+                    </div>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ]
+        });
+    </script>
+}
+

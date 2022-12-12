@@ -1,0 +1,175 @@
+﻿@model FrmForms
+
+@*if "enctype="multipart/form-data" " does not exsists it will not work*@
+<form method="post" >
+    <input asp-for="Id" hidden />
+    <div class="row">
+        <div class="offset-2 col-8">
+            <div class="border p-3 mt-4">
+                <div class="row pb-2">
+                    <h2 class="text-primary"> Questions</h2>
+                    <hr />
+                </div>
+                @*<div asp-validation-summary="All" class="text-danger"></div>*@
+                <div class="row mb-3">
+                    <div class="col-2">
+                        <label asp-for="TitleEn"></label>
+                    </div>
+                    <div class="col-10">
+                        <input asp-for="TitleEn" disabled class="col-9 form-control" />
+                    </div>
+                </div>
+                <hr />
+                
+@*                <div id="questionType"></div>
+
+
+                @*hidden files*@
+                    
+            <div class="row mb-3 p-2">Question </div>
+
+                <div id="newQuestion">
+                    <div id="newQuestionContent">
+                        <div class="row mb-3 ">
+                                <div class="col-6 questionDiv">
+                                    <input  name="text" class="col-9 form-control question" id="question" />
+                                </div>
+
+                                <div class="col-6">
+                                     <select asp-items="ViewBag.ControlTypeList " onchange="chooseControl(this)" class="form-control typeSelect" id="questionType">
+                                        <option selected disabled>---select question Type----</option>
+                                    </select>
+                                </div>
+                                <br />
+                            <div class="typeContent mt-4"> <br /></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div hidden>
+                    <div id="tempQuestion">
+                        <div class="row mb-3">
+                            <div class="col-6 questionDiv">
+                                <input name="text" class="col-9 form-control question" id="question" />
+                            </div>
+
+                            <div class="col-6">
+                                <select asp-items="ViewBag.ControlTypeList" onchange="chooseControl(this)" class="form-control typeSelect" id="questionType">
+                                    <option selected disabled>---select question Type----</option>
+                                </select>
+                            </div>
+                            <br />
+                            <div class="typeContent"> <br /></div>
+                        </div>
+                    </div>
+
+                    @*hidden control list*@
+                    <div id="tempSource">
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <select asp-items="ViewBag.DataSourcesList" class="form-control typeSelect" id="dataSource">
+                                    <option selected disabled>---select data source----</option>
+                                </select>
+                            </div>
+                            <br />
+                            <div class="typeContent"> <br /></div>
+                        </div>
+                    </div>
+                    @*buttons*@
+                    
+                </div>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <button type="button" onclick="addQuestion()" class="w-100 btn btn-secondary">Add Question</button>
+                </div>
+                <div class="col-6">
+                    <a asp-action="Index" asp-controller="Forms" class="btn btn-primary w-100">
+                        <i class="bi bi-arrow-left-circle-fill"></i>&nbsp; Back to List
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+
+        function addQuestion(){
+            $('#newQuestion').append($('#tempQuestion').clone().html());
+        }
+          function addDataSource(){
+            $('#newQuestion').append($('#tempSource').clone().html());
+        }
+
+        function chooseControl(c){
+            
+            if($(c).val() == '2'){
+                $(c).parent().parent().find('.typeContent').html(`<input type="text" class="form-control" name="text"></input>`);
+            }
+            else if ($(c).val() == '3') {
+                $(c).parent().parent().find('.typeContent').html(` <input type="email" class="form-control" name="email" > </input>`);
+            }
+            else if ($(c).val() == '4') {
+                $(c).parent().parent().find('.typeContent').html(`<input type="date" class="form-control" name="date"></input>`);
+            }
+             else if ($(c).val() == '5') {
+                $(c).parent().parent().find('.typeContent').html('<input type="datetime-local" class="form-control" name="datetime"></input>');
+            }
+            else if ($(c).val() == '6') {
+                $(c).parent().parent().find('.typeContent').html(`<input type="color" id="color"  class="form-control" name="color"></input>`);
+            }
+             else if ($(c).val() == '7') {
+                $(c).parent().parent().find('.typeContent').html($('#tempSource').clone().html());
+            }
+             else if ($(c).val() == '8') {
+                $(c).parent().parent().find('.typeContent').html(`<textarea  rows="3" class="form-control" name="textarea"></textarea>`);
+            }
+             else if ($(c).val() == '9') {
+                $(c).parent().parent().find('.typeContent').html(`<input type="number" class="form-control" name="number"></input>`);
+            }
+             else if ($(c).val() == '12') {
+                $(c).parent().parent().find('.typeContent').html(``);
+             }
+            else if ($(c).val() == '10') {
+                $(c).parent().parent().find('.typeContent').html(``);
+            }
+             else if ($(c).val() == '1013') {
+                $(c).parent().parent().find('.typeContent').html(`<input type="file" class="form-control" name="file"></input>`);
+            }
+            
+        }
+        //$('.typeSelect').on('change', function () {
+        //    this.value;
+        //});
+
+                //$('.typeSelect').on('change', function () {
+                //    var _this = $(this);
+                //    var selected = $(this).find(":selected");
+
+                //    var name = selected.text();
+                //    var controlList = @Html.Raw(ViewBag.ControlTypeList);
+                //    for(let control of controlList){
+                //        if (control.Type == name){
+
+                //            //control.HtmlContent = control.HtmlContent.replace("{0}", _this.parent().siblings('.questionDiv').find('.question').val());
+
+                //            //_this.parent()
+                //            //     .siblings('.typeContent')
+                //            //     .append(control.HtmlContent);
+                //        }
+                //    }
+                //})
+    </script>
+   
+}
+
+
+
